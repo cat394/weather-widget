@@ -212,7 +212,7 @@ weather-widget.addEventListener("input-area", (event) => {
 
 ## テーマを含むスタイルの変更
 
-豊富な CSS 変数による色の変更は許可していますが、最も簡単で推奨される方法は`--weather-widget-hue`の値を変更することです。
+豊富な CSS 変数による色の変更は許可していますが、最も簡単で推奨される方法は`--weather-widget-theme-hue`の値を変更することです。
 
 ```css
 :root {
