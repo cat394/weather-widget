@@ -60,13 +60,13 @@ npm i @kokomin/weather-widget
 
 4. UI が表示されます。
 
-![ウィジェットのトップ]("https://github.com/cat394/weather-widget/blob/main/images/weather-widget-home.png")
+	![ウィジェットのトップ](https://github.com/cat394/weather-widget/blob/main/images/weather-widget-home.png)
 
-![ウィジェットのチャート]("https://github.com/cat394/weather-widget/blob/main/images/weather-widget-chart.png")
+	![ウィジェットのチャート](https://github.com/cat394/weather-widget/blob/main/images/weather-widget-chart.png)
 
-![ウィジェットの検索ダイアログ]("https://github.com/cat394/weather-widget/blob/main/images/weather-widget-search.png")
+	![ウィジェットの検索ダイアログ](https://github.com/cat394/weather-widget/blob/main/images/weather-widget-search.png)
 
-これで一通りの UI は完成しましたね。
+	これで一通りの UI は完成しましたね。
 
 ## イベントから検索内容を受け取り、UI を更新する。
 
