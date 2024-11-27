@@ -356,3 +356,17 @@ weather_wigets.transform = (input_weather_data) => {
   | weather-widget-search-dialog-text | 検索ダイアログのテキスト色 |
   | weather-widget-chart-label        | チャートのラベルの色       |
   | weather-widget-chart-grid         | チャートのグリッドの色     |
+
+## クレジット
+
+- 天気アイコン
+
+  Meteocons(https://bas.dev/work/meteocons)
+
+- ナビゲーションの各アイコン
+
+  - feathericon(https://github.com/feathericon/feathericon)
+
+  - ionicons(https://github.com/ionic-team/ionicons)
+
+  - healthicons(https://github.com/resolvetosavelives/healthicons)
