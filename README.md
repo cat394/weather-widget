@@ -18,16 +18,16 @@ npm i @kokomin/weather-widget
 
    ```ts
    interface WeatherInfo {
-   	weather: Weather;
-   	temp: number;
-   	pop: number;
+     weather: Weather;
+     temp: number;
+     pop: number;
    }
 
    export interface WeatherData {
-   	date: string;
-   	location: string;
-   	main: WeatherInfo;
-   	hours: (WeatherInfo & { time: string })[];
+     date: string;
+     location: string;
+     main: WeatherInfo;
+     hours: (WeatherInfo & {time: string})[];
    }
    ```
 
@@ -37,10 +37,10 @@ npm i @kokomin/weather-widget
 
    ```html
    <header>
-   	<script type="module" src="/weather-widget/dist/index.js"></script>
+     <script type="module" src="/weather-widget/dist/index.js"></script>
    </header>
    <body>
-   	<weather-widget></weather-widget>
+     <weather-widget></weather-widget>
    </body>
    ```
 
@@ -49,22 +49,24 @@ npm i @kokomin/weather-widget
    要素への参照を取得したら、`data`プロパティに値をセットします。
 
    ```ts
-   const weather_widgets = document.querySelector("weather-widget");
+   const weather_widgets = document.querySelector('weather-widget');
 
    if (weather_widgets) {
-   	fetch("API_ENDPOINT")
-   		.then((res) => res.json())
-   		.then((data) => (weather_widgets.data = data));
+     fetch('API_ENDPOINT')
+       .then((res) => res.json())
+       .then((data) => (weather_widgets.data = data));
    }
    ```
 
 4. UI が表示されます。
 
-   ![ウィジェットのトップ]("https://github.com/cat394/weather-widget/blob/main/images/weather-widget-home.png")
-   ![ウィジェットのチャート]("https://github.com/cat394/weather-widget/blob/main/images/weather-widget-chart.png")
-   ![ウィジェットの検索ダイアログ]("https://github.com/cat394/weather-widget/blob/main/images/weather-widget-search.png")
+![ウィジェットのトップ]("https://github.com/cat394/weather-widget/blob/main/images/weather-widget-home.png")
 
-   これで一通りの UI は完成しましたね。
+![ウィジェットのチャート]("https://github.com/cat394/weather-widget/blob/main/images/weather-widget-chart.png")
+
+![ウィジェットの検索ダイアログ]("https://github.com/cat394/weather-widget/blob/main/images/weather-widget-search.png")
+
+これで一通りの UI は完成しましたね。
 
 ## イベントから検索内容を受け取り、UI を更新する。
 
@@ -81,28 +83,28 @@ Geolocation API を使用してユーザーの緯度と経度を取得しよう�
 その場合、`event.detail.location`の値は`null`になっています。
 
 ```ts
-weather_widgets.addEventListener("search", (event) => {
-	const detail = event.detail;
+weather_widgets.addEventListener('search', (event) => {
+  const detail = event.detail;
 
-	switch (detail.method) {
-		case "zipcode":
-			console.log("郵便番号", detail.zipcode);
-			break;
-		case "area":
-			console.log("ユーザーが入力した地域名", detail.area);
-			break;
-		case "location":
-			const location = detail.location;
+  switch (detail.method) {
+    case 'zipcode':
+      console.log('郵便番号', detail.zipcode);
+      break;
+    case 'area':
+      console.log('ユーザーが入力した地域名', detail.area);
+      break;
+    case 'location':
+      const location = detail.location;
 
-			if (!location) {
-				console.error("ユーザーが現在地の取得を拒否しました。");
-				return;
-			}
+      if (!location) {
+        console.error('ユーザーが現在地の取得を拒否しました。');
+        return;
+      }
 
-			console.log("ユーザーがいる場所の緯度", location.latitude);
-			console.log("ユーザーがいる場所の経度", location.longitude);
-			break;
-	}
+      console.log('ユーザーがいる場所の緯度', location.latitude);
+      console.log('ユーザーがいる場所の経度', location.longitude);
+      break;
+  }
 });
 ```
 
@@ -113,22 +115,22 @@ weather_widgets.addEventListener("search", (event) => {
 以下に、一般的に利用されるであろうパターンを示しておきます。
 
 ```ts
-weather_widgets.addEventListener("search", (event) => {
-	const detail = event.detail;
+weather_widgets.addEventListener('search', (event) => {
+  const detail = event.detail;
 
-	switch (detail.method) {
-		case "zipcode":
-			fetch(`/weather?zipcode=${detail.zipcode}`)
-				.then((res) => res.json())
-				.then((data) => {
-					weather_widgets.data = data;
-					weather_widgets.hide_search_dialog();
-				});
-			break;
+  switch (detail.method) {
+    case 'zipcode':
+      fetch(`/weather?zipcode=${detail.zipcode}`)
+        .then((res) => res.json())
+        .then((data) => {
+          weather_widgets.data = data;
+          weather_widgets.hide_search_dialog();
+        });
+      break;
 
-		default:
-			return;
-	}
+    default:
+      return;
+  }
 });
 ```
 
@@ -143,9 +145,9 @@ weather_widgets.addEventListener("search", (event) => {
 ```
 
 ```ts
-fetch("/area/search?prefectures")
-	.then((res) => res.json())
-	.then((data) => (weather_widgets.area_suggestions = data));
+fetch('/area/search?prefectures')
+  .then((res) => res.json())
+  .then((data) => (weather_widgets.area_suggestions = data));
 ```
 
 またはユーザーの入力文字に合わせて動的に候補を表示したいことがあります。
@@ -182,7 +184,7 @@ weather-widget.addEventListener("input-area", (event) => {
 
 ```html
 <weather-widget
-	search-methods="current-location, zipcode, area"
+  search-methods="current-location, zipcode, area"
 ></weather-widget>
 
 <!-- または all 値(デフォルト値) -->
@@ -216,8 +218,8 @@ weather-widget.addEventListener("input-area", (event) => {
 
 ```css
 :root {
-	/* change red theme */
-	--weather-widget-hue: 30;
+  /* change red theme */
+  --weather-widget-hue: 30;
 }
 ```
 
@@ -233,69 +235,69 @@ weather-widget.addEventListener("input-area", (event) => {
 
 ```json
 {
-	"date": "2024-11-20T00:00:00.000Z",
-	"location": "東京都",
-	"main": {
-		"weather": "晴れ",
-		"temp": 22.5,
-		"pop": 0.1
-	},
-	"hours": [
-		{
-			"time": "2024-11-20T00:00:00.000Z",
-			"weather": "曇り",
-			"temp": 18.2,
-			"pop": 0.2
-		},
-		{
-			"time": "2024-11-20T03:00:00.000Z",
-			"weather": "曇り",
-			"temp": 17.8,
-			"pop": 0.3
-		},
-		{
-			"time": "2024-11-20T06:00:00.000Z",
-			"weather": "雨",
-			"temp": 16.5,
-			"pop": 0.7
-		},
-		{
-			"time": "2024-11-20T09:00:00.000Z",
-			"weather": "雨",
-			"temp": 20.0,
-			"pop": 0.1
-		},
-		{
-			"time": "2024-11-20T12:00:00.000Z",
-			"weather": "晴れ",
-			"temp": 22.5,
-			"pop": 0.05
-		},
-		{
-			"time": "2024-11-20T15:00:00.000Z",
-			"weather": "晴れ",
-			"temp": 23.0,
-			"pop": 0
-		},
-		{
-			"time": "2024-11-20T18:00:00.000Z",
-			"weather": "曇り",
-			"temp": 21.2,
-			"pop": 0.1
-		},
-		{
-			"time": "2024-11-20T21:00:00.000Z",
-			"weather": "雪",
-			"temp": 19.0,
-			"pop": 0.2
-		},
-		{
-			"time": "2024-11-21T00:00:00.000Z",
-			"weather": "曇り",
-			"temp": 19.0,
-			"pop": 0.2
-		}
-	]
+  "date": "2024-11-20T00:00:00.000Z",
+  "location": "東京都",
+  "main": {
+    "weather": "晴れ",
+    "temp": 22.5,
+    "pop": 0.1
+  },
+  "hours": [
+    {
+      "time": "2024-11-20T00:00:00.000Z",
+      "weather": "曇り",
+      "temp": 18.2,
+      "pop": 0.2
+    },
+    {
+      "time": "2024-11-20T03:00:00.000Z",
+      "weather": "曇り",
+      "temp": 17.8,
+      "pop": 0.3
+    },
+    {
+      "time": "2024-11-20T06:00:00.000Z",
+      "weather": "雨",
+      "temp": 16.5,
+      "pop": 0.7
+    },
+    {
+      "time": "2024-11-20T09:00:00.000Z",
+      "weather": "雨",
+      "temp": 20.0,
+      "pop": 0.1
+    },
+    {
+      "time": "2024-11-20T12:00:00.000Z",
+      "weather": "晴れ",
+      "temp": 22.5,
+      "pop": 0.05
+    },
+    {
+      "time": "2024-11-20T15:00:00.000Z",
+      "weather": "晴れ",
+      "temp": 23.0,
+      "pop": 0
+    },
+    {
+      "time": "2024-11-20T18:00:00.000Z",
+      "weather": "曇り",
+      "temp": 21.2,
+      "pop": 0.1
+    },
+    {
+      "time": "2024-11-20T21:00:00.000Z",
+      "weather": "雪",
+      "temp": 19.0,
+      "pop": 0.2
+    },
+    {
+      "time": "2024-11-21T00:00:00.000Z",
+      "weather": "曇り",
+      "temp": 19.0,
+      "pop": 0.2
+    }
+  ]
 }
 ```
 
@@ -313,9 +315,9 @@ weather-widget.addEventListener("input-area", (event) => {
 
 ```ts
 weather_wigets.transform = (input_weather_data) => {
-	// 受け取った天気情報を上記のフォーマットに合わせる...
-	// 最後に、変換したデータを返す
-	return transformed;
+  // 受け取った天気情報を上記のフォーマットに合わせる...
+  // 最後に、変換したデータを返す
+  return transformed;
 };
 ```
 
@@ -338,11 +340,11 @@ weather_wigets.transform = (input_weather_data) => {
 
   ```css
   weather-widget::part(search) {
-  	background: red;
+    background: red;
   }
 
   weather-widget::part(input) {
-  	background: blue;
+    background: blue;
   }
   ```
 
