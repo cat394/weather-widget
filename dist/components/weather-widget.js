@@ -194,6 +194,7 @@ WeatherWidget.styles = [
         display: inline-block;
         width: 100%;
         max-width: 400px;
+        margin: 32px;
         box-shadow: 0 0px 10px -1px var(--_weather-widget-theme);
         border-radius: 10px;
         visibility: hidden;
