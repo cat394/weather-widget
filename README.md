@@ -60,13 +60,13 @@ npm i @kokomin/weather-widget
 
 4. UI が表示されます。
 
-	![ウィジェットのトップ](https://github.com/cat394/weather-widget/blob/main/images/weather-widget-home.png)
+   ![ウィジェットのトップ](https://github.com/cat394/weather-widget/blob/main/images/weather-widget-home.png)
 
-	![ウィジェットのチャート](https://github.com/cat394/weather-widget/blob/main/images/weather-widget-chart.png)
+   ![ウィジェットのチャート](https://github.com/cat394/weather-widget/blob/main/images/weather-widget-chart.png)
 
-	![ウィジェットの検索ダイアログ](https://github.com/cat394/weather-widget/blob/main/images/weather-widget-search.png)
+   ![ウィジェットの検索ダイアログ](https://github.com/cat394/weather-widget/blob/main/images/weather-widget-search.png)
 
-	これで一通りの UI は完成しましたね。
+   これで一通りの UI は完成しましたね。
 
 ## イベントから検索内容を受け取り、UI を更新する。
 
@@ -110,7 +110,7 @@ weather_widgets.addEventListener('search', (event) => {
 
 このイベントの中で、先ほど取得した`weather-widget`要素の`data`プロパティに新しい天気データを再割り当てすれば、自動的に UI は更新されます。
 
-また、天気が取得したのちに検索ダイアログを閉じる場合は、`weather-widget`要素の`hide_search_dialog()`メソッドをを利用します。
+また、天気データを取得した後に検索ダイアログを閉じる場合は、`weather-widget`要素の`hide_search_dialog()`メソッドをを利用します。
 
 以下に、一般的に利用されるであろうパターンを示しておきます。
 
@@ -154,9 +154,9 @@ fetch('/area/search?prefectures')
 
 そのために、`input-area`イベントが用意されています。
 
-このイベントはデフォルトで 500 ミリ秒のデバウンスが設定されていますが、`input-area-debounce`属性から簡単に変更可能です。
+このイベントはデフォルトで 500 ミリ秒のデバウンスが設定されていますが、`input-area-debounce`属性から簡単に変更できます。
 
-例えば、デバウンスを 1 秒ごとに設定したいならば、以下のようにします。
+例えば、デバウンスを 1 秒ごとに設定したいなら、以下のように記述します。
 
 ```html
 <weather-widget input-area-debounce="1000"></weather-widget>
@@ -196,7 +196,7 @@ weather-widget.addEventListener("input-area", (event) => {
 
 カンマの後に空白があるのは読みやすさを配慮してのことであり、なくても問題ありません。
 
-それぞれの検索 UI はカンマ区切りで制御できます。例えば、現在地を取得するボタンは必要ないときは以下のように記述します。
+それぞれの検索 UI はカンマ区切りで制御できます。例えば、『現在地から取得する』ボタンが必要ないときは以下のように記述します。
 
 ```html
 <weather-widget search-methods="zipcode, area"></weather-widget>
@@ -209,8 +209,6 @@ weather-widget.addEventListener("input-area", (event) => {
 ```
 
 チャートに関しては、現在のところ UI の制御ができません。これは、将来的に行う、週のデータや月のデータを表示する計画がどうなるか定かではないからです。
-
-そのため、現在としては、`<weather-widget>`の`data`プロパティに割り当てられた値が`hours`フィールドの有無でチャートの表示 / 非表示を制御しています。
 
 ## テーマを含むスタイルの変更
 
@@ -225,7 +223,7 @@ weather-widget.addEventListener("input-area", (event) => {
 
 これにより、今後開発される予定の UI までその色が適用されることになるため、バージョンアップがしやすいというメリットがあります。
 
-レスポンシブに対応するよう既にスタイルが設定されているため、ホスト要素の`max-width`の値は変更しないでください。
+レスポンシブに対応するよう既にスタイルが設定されているため、`weather-widget`要素の`max-width`の値は変更しないでください。
 
 コンポーネントの幅は 220px から 400px までを想定しています。
 
@@ -301,7 +299,7 @@ weather-widget.addEventListener("input-area", (event) => {
 }
 ```
 
-デフォルトでコンポーネントはこの形式のデータを受け取ると、ISO 文字列を日付や 2 桁の表記に変換したり、`pop`の値を割合からパーセンテージに変換します。
+デフォルトでコンポーネントはこの形式のデータを受け取ると、ISO 文字列を日付や 2 桁の時間表記に変換したり、`pop`の値を割合からパーセンテージに変換します。
 
 しかしときには、このような変換が不要であったり、独自の変換プロセスを利用したい場面があると思います。
 
@@ -311,7 +309,7 @@ weather-widget.addEventListener("input-area", (event) => {
 <weather-widget notransform></weather-widget>
 ```
 
-独自の変換関数をセットする場合は、`weather_widgets.transform`から値を再割り当てしてください。
+独自の変換関数を使用する場合は、`weather_widgets.transform`から関数を再割り当てしてください。
 
 ```ts
 weather_wigets.transform = (input_weather_data) => {
@@ -348,7 +346,7 @@ weather_wigets.transform = (input_weather_data) => {
   }
   ```
 
-- 以下の CSS 変数から UI の色も変えられます。
+- 以下の CSS 変数から UI の色も変更できます。
 
   | 変数名                            | 説明                       |
   | --------------------------------- | -------------------------- |
