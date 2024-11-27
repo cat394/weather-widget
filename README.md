@@ -217,11 +217,13 @@ weather-widget.addEventListener("input-area", (event) => {
 ```css
 :root {
   /* change red theme */
-  --weather-widget-hue: 30;
+  --weather-widget-theme-hue: 30;
 }
 ```
 
 これにより、今後開発される予定の UI までその色が適用されることになるため、バージョンアップがしやすいというメリットがあります。
+
+色空間は OKLCH を利用しているため、HSL 特有の特定の色相においてコントラストが損なわれることはありません。
 
 レスポンシブに対応するよう既にスタイルが設定されているため、`weather-widget`要素の`max-width`の値は変更しないでください。
 
