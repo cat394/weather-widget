@@ -60,9 +60,9 @@ npm i @kokomin/weather-widget
 
 4. UI が表示されます。
 
-   ![ウィジェットのトップ]("./images/weather-widget-home.png")
-   ![ウィジェットのチャート]("./images/weather-widget-chart.png")
-   ![ウィジェットの検索ダイアログ]("./images/weather-widget-search.png")
+   ![ウィジェットのトップ]("https://github.com/cat394/weather-widget/blob/main/images/weather-widget-home.png")
+   ![ウィジェットのチャート]("https://github.com/cat394/weather-widget/blob/main/images/weather-widget-chart.png")
+   ![ウィジェットの検索ダイアログ]("https://github.com/cat394/weather-widget/blob/main/images/weather-widget-search.png")
 
    これで一通りの UI は完成しましたね。
 
