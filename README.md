@@ -23,7 +23,7 @@ npm i @kokomin/weather-widget
      pop: number;
    }
 
-   export interface WeatherData {
+  interface WeatherData {
      date: string;
      location: string;
      main: WeatherInfo;
